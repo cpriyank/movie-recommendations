@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Rave">
+<head>
+    <meta charset="UTF-8">
+    <title>Rave Movie Recommendations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1.0">
+    <!-- Scripts -->
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+    <!-- Project -->
+    <script src="directives/go-back.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- Admin -->
+    <script src="views/admin/controllers/admin-users.controller.client.js"></script>
+    <script src="views/admin/controllers/admin.controller.client.js"></script>
+    <script src="views/admin/controllers/admin-reviews.controller.client.js"></script>
+
+    <!-- Media -->
+    <script src="services/media.service.client.js"></script>
+
+    <!-- Review -->
+    <script src="services/review.service.client.js"></script>
+
+    <!-- Message -->
+    <script src="services/message.service.client.js"></script>
+    <script src="views/user/controllers/message.controller.client.js"></script>
+
+    <!-- User -->
+    <script src="services/user.service.client.js"></script>
+    <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/logout.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+    <script src="views/user/controllers/profile-edit.controller.client.js"></script>
+    <script src="views/user/controllers/register.controller.client.js"></script>
+
+    <!-- Movie -->
+    <script src="services/movie.service.client.js"></script>
+    <script src="views/movie/controllers/index.controller.client.js"></script>
+    <script src="views/movie/controllers/search.controller.client.js"></script>
+    <script src="views/movie/controllers/movie.controller.client.js"></script>
+    <script src="views/movie/controllers/genre.controller.client.js"></script>
+    <script src="views/movie/controllers/artist.controller.client.js"></script>
+
+    <!-- CSS -->
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+		<!-- font-awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    		<!-- Bootstrap Material Design -->
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/css/bootstrap-material-design.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.9/css/ripples.min.css">
+		<!-- Override -->
+		<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div ng-view>
+
+</div>
+
+<footer id="site-footer" class="well well-lg clearfix">
+    <p class="text-center">
+        Developed by <a href="https://github.com/pronoid">Priyank Chaudhary</a>
+    </p>
+</footer>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

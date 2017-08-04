@@ -1,0 +1,85 @@
+body {
+	padding-top: 7em;
+	background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3 {
+text-transform: uppercase;
+}
+
+img {
+    max-width: 100%;
+}
+
+#header {
+	background-color: #0266C8;
+}
+
+.navbar {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form .btn-group,
+.form .form-control {
+    margin-bottom: 1em !important;
+}
+
+#site-footer {
+    margin-top: 1em;
+}
+
+img.movie-search {
+    min-width: 64px !important;
+    height:auto;
+}
+
+.homepage-search,
+.margin-bottom {
+    margin-bottom: 2em;
+}
+
+@media screen and (max-width: 767px) {
+    .movie-well-right,
+    .margin-top {
+        margin-top: 1em;
+    }
+}
