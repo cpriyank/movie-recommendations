@@ -1,0 +1,175 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div id="primary" class="container profile">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <div ng-show="model.message" class="alert alert-success">
+        {{model.message}}
+    </div>
+
+    <div class="jumbotron">
+        <h1>{{model.user.firstName}} {{model.user.lastName}} <small>{{model.user.role}}</small></h1>
+        <p>{{model.user.bio}}</p>
+        <p ng-if="model.user.role === 'Critic' &&
+                  model.currentUser.role === 'Viewer' &&
+                  !model.toFollowOrToUnfollow">
+            <a ng-click="model.followCritic()"
+              class="btn btn-success btn-lg margin-top">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Follow {{model.user.firstName}}
+            </a>
+        </p>
+        <p ng-if="model.user.role === 'Critic' &&
+                  model.currentUser.role === 'Viewer' &&
+                  model.toFollowOrToUnfollow">
+            <a ng-click="model.unfollowCritic()"
+             class="btn btn-danger btn-lg margin-top">
+            <i class="fa fa-user-times" aria-hidden="true"></i> Unfollow {{model.user.firstName}}
+        </a>
+        </p>
+        <p ng-if="model.user._id === model.currentUser._id">
+            <a href="#!/profile/edit"
+             class="btn btn-warning btn-lg margin-top">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile
+            </a>
+            <a href="#!/message"
+             class="btn btn-success btn-lg margin-top">
+                <i class="fa fa-envelope" aria-hidden="true"></i> Messages
+            </a>
+            <a href="#!/logout"
+             class="btn btn-danger btn-lg margin-top">
+                <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
+            </a>
+        </p>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6">
+
+            <div class="panel panel-primary" ng-if="model.currentUser._id !== model.user._id">
+                <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> Send Message</div>
+                <div class="panel-body form">
+                    <textarea class="form-control" rows="3" ng-model="message"></textarea>
+                    <a ng-click="model.createMessage(message); message = ''" class="btn btn-success"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</a>
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-if="model.user.role === 'Viewer'">
+                <div class="panel-heading">Favorite Movies</div>
+
+                <div class="panel-body" ng-if="!model.favorites.length">
+                    <p ng-if="model.user._id === model.currentUser._id">
+                        <span class="lead">Hi {{model.user.firstName}},</span><br>
+                        Your favorites list is empty! To add a movie to favorite:
+                        <ol>
+                         <li>Search for a movie from search bar and open movie details.</li>
+                         <li>Click on "Add to favorites".</li>
+                         <li>If you don't have it in favorites list, it'll be added.</li>
+                         <li>Your favorite movies will be shown here.</li>
+                        </ol>
+                    </p>
+                    <p ng-if="model.user._id !== model.currentUser._id">
+                        {{model.user.firstName}} has not added any movie to Favorites list.
+                    </p>
+                </div>
+
+                <ul class="list-group" ng-if="model.favorites.length">
+                    <li class="list-group-item" ng-repeat="movie in model.favorites">
+                        <a href="#!/movie/{{movie.movieId}}">{{movie.title}}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="panel panel-default" ng-if="model.user.role === 'Admin'">
+                <div class="panel-heading">Hello {{model.user.firstName}}</div>
+
+                <div class="panel-body">
+                    You're an administrator of this website. You have the power to:
+                    <dl class="dl-horizontal">
+                        <dt><a href="#!/admin/user">Users</a></dt>
+                        <dd>
+                            <ol>
+                                <li>Create New Users</li>
+                                <li>Edit existing User details</li>
+                                <li>Delete existing Users</li>
+                            </ol>
+                        </dd>
+                        <dt><a href="#!/admin/review">Reviews</a></dt>
+                        <dd>
+                            <ol>
+                                <li>Edit existing movie reviews</li>
+                                <li>Delete movie reviews</li>
+                            </ol>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-if="model.user.role === 'Critic'">
+
+                <div class="panel-heading">Reviews Posted by {{model.user.firstName}}</div>
+
+                <div ng-if="model.reviews.length" class="list-group" ng-repeat="review in model.reviews">
+                    <div class="list-group-item">
+                        <p class="list-group-item-text">
+                            {{review.review}}
+                        </p>
+                    </div>
+                </div>
+
+                <div ng-if="!model.reviews.length" class="panel-body">
+                    {{model.user.firstName}} has not posted any reviews yet!
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-default" ng-if="model.user.role === 'Viewer'" >
+                <div class="panel-heading"><i class="fa fa-users" aria-hidden="true"></i> Following</div>
+                <div class="panel-body" ng-if="!model.following.length">
+                    <p ng-if="model.user._id === model.currentUser._id">
+                        <span class="lead">Hi {{model.user.firstName}},</span><br>
+                        You don't follow any critics yet. To follow a critic:
+                        <ol>
+                         <li>Search for a movie from search bar and open movie details.</li>
+                         <li>If there are reviews on the movie, click on username of the critic and on the profile of critic, hit "Follow" button.</li>
+                         <li>The critc's name will be shown here!</li>
+                         <li>You can unfollow a critic anytime.</li>
+                        </ol>
+                    </p>
+                    <p ng-if="model.user._id !== model.currentUser._id">
+                        {{model.user.firstName}} does not follow any critics yet.
+                    </p>
+                </div>
+                <div class="panel-body" ng-if="model.following.length">
+                    {{model.user.firstName}} follows following critics:
+                </div>
+                <ul class="list-group" ng-if="model.following.length">
+                    <li class="list-group-item" ng-repeat="critic in model.following">
+                        <a href="#!/profile/{{critic.username}}">{{critic.firstName}} {{critic.lastName}}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="panel panel-default" ng-if="model.user.role === 'Critic'">
+                <div class="panel-heading"><i class="fa fa-users" aria-hidden="true"></i> Followers</div>
+                <div class="panel-body" ng-if="!model.followers.length">
+                    No one follows {{model.user.firstName}}.
+                </div>
+                <div class="panel-body" ng-if="model.followers.length">
+                    {{model.user.firstName}} is followed by following fans:
+                </div>
+                <ul class="list-group" ng-if="model.followers.length">
+                    <li class="list-group-item" ng-repeat="follower in model.followers">
+                        <a href="#!/profile/{{follower.username}}">{{follower.firstName}} {{follower.lastName}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

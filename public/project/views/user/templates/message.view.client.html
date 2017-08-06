@@ -1,0 +1,75 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Messages</h1>
+    </div>
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6">
+
+            <div class="panel panel-primary">
+
+                <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> Sent Messages</div>
+
+                <div class="panel-body" ng-if="!model.messageSent.length">
+                    <p class="lead">You've not sent any messages to anyone. To send a message, go to a user's profile, write a message and hit send.</p>
+                </div>
+                <table class="table table-responsive table-bordered table-striped" ng-if="model.messageSent.length">
+                    <thead>
+                    <tr>
+                        <th>
+                            Sent To
+                        </th>
+                        <th>
+                            Message
+                        </th>
+                    </tr>
+                    </thead>
+                    <tdata>
+                        <tr ng-repeat="m in model.messageSent">
+                            <td>@<a href="#!/profile/{{m.username}}">{{m.username}}</a></td>
+                            <td>{{m.message}}</td>
+                        </tr>
+                    </tdata>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+
+            <div class="panel panel-primary">
+
+                <div class="panel-heading"><i class="fa fa-commenting" aria-hidden="true"></i> Received Messages</div>
+
+                <div class="panel-body" ng-if="!model.messageReceived.length">
+                    <p class="lead">You've not received any messages yet!</p>
+                </div>
+
+                <table class="table table-responsive table-bordered table-striped" ng-if="model.messageReceived.length">
+                    <thead>
+                    <tr>
+                        <th>
+                            Sender
+                        </th>
+                        <th>
+                            Message
+                        </th>
+                    </tr>
+                    </thead>
+                    <tdata>
+                        <tr ng-repeat="m in model.messageReceived">
+                            <td><a href="#!/profile/{{m.username}}">{{m.username}}</a></td>
+                            <td>{{m.message}}</td>
+                        </tr>
+                    </tdata>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

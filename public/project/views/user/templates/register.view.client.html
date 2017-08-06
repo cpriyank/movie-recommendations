@@ -1,0 +1,59 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div id="primary" class="container form register-form">
+    <h1>Register</h1>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <label for="username">Username</label>
+    <input type="text"
+           id="username"
+           ng-model="username"
+           class="form-control"
+           placeholder="username"
+           required/>
+    <label for="password">Password</label>
+    <input type="password"
+           id="password"
+           ng-model="password"
+           class="form-control"
+           placeholder="password"
+           required/>
+    <label for="verify-password">Verify Password</label>
+    <input type="password"
+           id="verify-password"
+           ng-model="password2"
+           class="form-control"
+           placeholder="verify password"
+           required/>
+    <label for="firstName">First Name</label>
+    <input type="text"
+           id="firstName"
+           ng-model="firstName"
+           class="form-control"
+           placeholder="First Name"
+           required/>
+    <label for="lastName">Last Name</label>
+    <input type="text"
+           id="lastName"
+           ng-model="lastName"
+           class="form-control"
+           placeholder="Last Name"
+           required/>
+    <label for="role">Select Role</label>
+    <select ng-model="role"
+            id="role"
+            class="form-control"
+            required>
+        <option value="Viewer">Viewer</option>
+        <option value="Critic">Critic</option>
+    </select>
+    <a ng-click="model.register(username, password, password2, role, firstName, lastName)"
+       class="btn btn-primary btn-block">
+        Register
+    </a>
+    <a class="btn btn-danger  btn-block"
+       href="#!/login">Cancel</a>
+</div>
