@@ -1,0 +1,39 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div class="container">
+    <div ng-show="model.message">
+        <p class="alert alert-info">{{model.message}}</p>
+    </div>
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            Manage Reviews
+        </div>
+
+        <div class="panel-body" ng-if="!model.reviews.length">
+            <p class="alert alert-warning">No reviews to view!</p>
+        </div>
+
+        <div class="panel-body form" ng-if="model.reviews.length">
+            <textarea ng-model="model.review.review" class="form-control" rows="3"></textarea>
+            <button class="btn btn-success" ng-click="model.updateReview(model.review);model.review={}">Update Review</button>
+        </div>
+
+        <ul class="list-group" ng-if="model.reviews.length">
+            <li class="list-group-item" ng-repeat="review in model.reviews">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <p class="lead">@<a href="#!/profile/{{review.username}}">{{review.username}}</a> posted:</p>
+                        <p>{{review.review}}</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-warning" ng-click="model.selectReview(review)">Edit</button>
+                        <button class="btn btn-danger pull-right" ng-click="model.deleteReview(review)">Delete</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+</div>

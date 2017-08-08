@@ -1,0 +1,92 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div class="container-fluid">
+    <div ng-show="model.message">
+        <p class="alert alert-info">{{model.message}}</p>
+    </div>
+    <div ng-show="model.error">
+        <p class="alert alert-danger">{{model.error}}</p>
+    </div>
+    <h1>Manage Users</h1>
+
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-xs-3">
+                    <label for="username">Username</label>
+                </div>
+                <div class="col-xs-3">
+                    <label for="firstname">First Name</label>
+                </div>
+                <div class="col-xs-3">
+                    <label for="lastname">Last Name</label>
+                </div>
+                <div class="col-xs-1">
+                    <label for="role">Role</label>
+                </div>
+                <div class="col-xs-1">
+
+                </div>
+                <div class="col-xs-1">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <input ng-model="model.user.username"
+                           id="username"
+                           class="form-control" />
+                </div>
+                <div class="col-xs-3">
+                    <input ng-model="model.user.firstName"
+                           id="firstname"
+                           class="form-control" />
+                </div>
+                <div class="col-xs-3">
+                    <input ng-model="model.user.lastName"
+                           id="lastname"
+                           class="form-control" />
+                </div>
+                <div class="col-xs-1">
+                    <input ng-model="model.user.role"
+                           id="role"
+                           class="form-control" />
+                </div>
+                <div class="col-xs-1">
+                    <span  data-toggle="tooltip" data-placement="top" title="Add New User" ng-click="model.createUser(model.user)"
+                          class="glyphicon glyphicon-plus pull-right"></span>
+                </div>
+                <div class="col-xs-1">
+                    <span data-toggle="tooltip" data-placement="top" title="Update User" ng-click="model.updateUser(model.user)"
+                          class="glyphicon glyphicon-ok pull-right"></span>
+                </div>
+            </div>
+        </li>
+        <li ng-repeat="user in model.users" ng-if="user._id !== model.currentUser._id" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    {{user.username}}
+                </div>
+                <div class="col-xs-3">
+                    {{user.firstName}}
+                </div>
+                <div class="col-xs-3">
+                    {{user.lastName}}
+                </div>
+                <div class="col-xs-1">
+                    {{user.role}}
+                </div>
+                <div class="col-xs-1">
+                    <span data-toggle="tooltip" data-placement="top" title="Edit User" ng-click="model.selectUser(user)"
+                          class="glyphicon glyphicon-pencil pull-right"></span>
+                </div>
+                <div class="col-xs-1">
+                    <span data-toggle="tooltip" data-placement="top" title="Delete User" ng-click="model.deleteUser(user)"
+                          class="glyphicon glyphicon-remove pull-right"></span>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+    <p class="lead">You cannot edit your own profile from this page. To edit your profile, click on your name on nav bar and hit "Edit Profile".</p>
+</div>
