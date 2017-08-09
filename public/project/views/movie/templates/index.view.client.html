@@ -1,0 +1,117 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div class="container">
+    <div class="homepage-search">
+        <div class="input-group input-group-lg">
+            <input type="text" ng-model="model.query" class="form-control" placeholder="Search for Movies">
+            <span class="input-group-btn">
+                <a class="btn btn-warning" href="#!/search/{{model.query}}" type="button"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+            </span>
+        </div><!-- /input-group -->
+    </div>
+
+    <div id="primary">
+        <div class="page-header homepage-search clearfix">
+            <h2>Hello <span ng-if="model.currentUser.firstName">{{model.currentUser.firstName}}</span><span ng-if="!model.currentUser.firstName">Guest</span>!
+                <small class="pull-right">
+                    <span ng-if="!model.currentUser.firstName"><a class="btn btn-success btn" href="#!/login">Login</a>  or <a class="btn btn-danger btn" href="#!/register">Register</a></span>
+                </small></h2>
+        </div>
+
+
+        <div class="btn-group btn-group-justified btn-group-lg" role="tablist">
+            <div class="btn-group" role="presentation">
+                <button type="button" class="btn btn-primary" data-target="#popular" aria-controls="popular" role="tab" data-toggle="tab">Popular</button>
+            </div>
+            <div class="btn-group" role="presentation">
+                <button type="button" class="btn btn-primary" data-target="#latest" aria-controls="latest"  data-toggle="tab" role="tab">Upcoming</button>
+            </div>
+            <div class="btn-group" role="presentation">
+                <button type="button" class="btn btn-primary" data-target="#grossing" aria-controls="grossing" role="tab" data-toggle="tab" data-role="presentation">Box Office</button>
+            </div>
+        </div>
+
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="popular">
+                <div class="page-header"><h3>Popular</h3></div>
+
+                <div class="row well" ng-repeat="movie in model.popular" ng-if="movie.poster_path && movie.overview">
+                    <div class="media col-sm-8">
+                        <div class="media-left media-middle" ng-if="movie.poster_path">
+                            <a href="#!/movie/{{movie.id}}">
+                                <img class="media-object movie-search" src="https://image.tmdb.org/t/p/w300{{movie.poster_path}}" alt="{{movie.title}}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading"><a href="#!/movie/{{movie.id}}">{{movie.title}}</a></h2>
+                            {{movie.overview}}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 movie-well-right">
+                        <p><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Released Date: {{movie.release_date}}</p>
+                        <p><i class="fa fa-thumbs-up" aria-hidden="true"></i> Rating: {{movie.vote_average}}</p>
+                        <p ng-if="movie.genre_ids.length"><i class="fa fa-tags" aria-hidden="true"></i>
+                            <span ng-repeat="genreId in movie.genre_ids">
+                    <a class="mark" href="#!/genre/{{genreId}}">{{model.findGenreById(genreId)}}</a>
+                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="latest">
+                <div class="page-header"><h3>Latest & Upcoming</h3></div>
+
+                <div class="row well" ng-repeat="movie in model.latest" ng-if="movie.poster_path && movie.overview">
+                    <div class="media col-sm-8">
+                        <div class="media-left media-middle" ng-if="movie.poster_path">
+                            <a href="#!/movie/{{movie.id}}">
+                                <img class="media-object movie-search" src="https://image.tmdb.org/t/p/w300{{movie.poster_path}}" alt="{{movie.title}}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading"><a href="#!/movie/{{movie.id}}">{{movie.title}}</a></h2>
+                            {{movie.overview}}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 movie-well-right">
+                        <p><i class="fa fa-calendar" aria-hidden="true"></i> Release Date: {{movie.release_date}}</p>
+                        <p><i class="fa fa-star" aria-hidden="true"></i> Vote Average: {{movie.vote_average}}</p>
+                        <p ng-if="movie.genre_ids.length"><i class="fa fa-film" aria-hidden="true"></i>
+                            <span ng-repeat="genreId in movie.genre_ids">
+                    <a class="mark" href="#!/genre/{{genreId}}">{{model.findGenreById(genreId)}}</a>
+                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="grossing">
+                <div class="page-header"><h3>Highest Grossing</h3></div>
+                <div class="row well" ng-repeat="movie in model.highestGrossing" ng-if="movie.poster_path && movie.overview">
+                    <div class="media col-sm-8">
+                        <div class="media-left media-middle" ng-if="movie.poster_path">
+                            <a href="#!/movie/{{movie.id}}">
+                                <img class="media-object movie-search" src="https://image.tmdb.org/t/p/w300{{movie.poster_path}}" alt="{{movie.title}}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading"><a href="#!/movie/{{movie.id}}">{{movie.title}}</a></h2>
+                            {{movie.overview}}
+                        </div>
+                    </div>
+                    <div class="col-sm-4 movie-well-right">
+                        <p><i class="fa fa-calendar" aria-hidden="true"></i> Released Date: {{movie.release_date}}</p>
+                        <p><i class="fa fa-star" aria-hidden="true"></i> Vote Average: {{movie.vote_average}}</p>
+                        <p ng-if="movie.genre_ids.length"><i class="fa fa-film" aria-hidden="true"></i>
+                            <span ng-repeat="genreId in movie.genre_ids">
+                    <a class="mark" href="#!/genre/{{genreId}}">{{model.findGenreById(genreId)}}</a>
+                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

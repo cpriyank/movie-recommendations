@@ -1,0 +1,97 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div class="container">
+
+    <div class="jumbotron row">
+        <div class="col-sm-4">
+            <img src="https://image.tmdb.org/t/p/w300{{model.actor.profile_path}}">
+        </div>
+        <div class="col-sm-8">
+            <h1>{{model.actor.name}}</h1>
+            <p>{{model.actor.biography}}</p>
+            <p>
+                <a ng-if="model.actor.homepage"
+                   href="{{model.actor.homepage}}"
+                   class="btn btn-success btn-lg"
+                   target="_blank">
+                    <i class="fa fa-external-link" aria-hidden="true"></i> Visit Website
+                </a>
+                <a ng-if="model.actor.imdb_id"
+                   href="http://www.imdb.com/name/{{model.actor.imdb_id}}/"
+                   class="btn btn-warning btn-lg"
+                   target="_blank">
+                    <i class="fa fa-imdb" aria-hidden="true"></i> View on IMDB
+                </a>
+
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">Details</div>
+                <table class="table table-bordered table-responsive table-striped">
+                    <tdata>
+                        <tr>
+                            <td><i class="fa fa-calendar" aria-hidden="true"></i> Date of Birth</td>
+                            <td>{{model.actor.birthday | date: fullDate}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-globe" aria-hidden="true"></i> Place of Birth</td>
+                            <td>{{model.actor.place_of_birth}}</td>
+                        </tr>
+                        <tr ng-if="model.actor.deathday != null">
+                            <td>
+                                <i class="fa fa-calendar-o" aria-hidden="true"></i> Date of Death
+                            </td>
+                            <td>
+                                {{model.actor.deathday | date: fullDate}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-star" aria-hidden="true"></i> Popularity
+                            </td>
+                            <td>
+                                {{model.actor.popularity}}
+                            </td>
+                        </tr>
+                    </tdata>
+                </table>
+            </div>
+
+            <div class="panel panel-default" ng-if="model.actor.also_known_as.length">
+                <div class="panel-heading">Also Known As</div>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="name in model.actor.also_known_as">
+                        {{name}}
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-default" ng-if="model.actor.movie_credits.cast.length">
+                <div class="panel-heading">Filmography</div>
+                <div class="media well-sm" ng-repeat="movie in model.actor.movie_credits.cast | limitTo: 6" ng-if="movie.poster_path">
+                    <div class="media-left" ng-if="movie.poster_path">
+                        <a href="#!/movie/{{movie.id}}">
+                            <img class="media-object movie-search" src="https://image.tmdb.org/t/p/w92{{movie.poster_path}}" alt="{{movie.title}}">
+                        </a>
+                    </div>
+
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="#!/movie/{{movie.id}}">{{movie.title}}</a></h4>
+                        <p><i class="fa fa-user-circle" aria-hidden="true"></i> as {{movie.character}}</p>
+                        <p><i class="fa fa-calendar" aria-hidden="true"></i> Released on {{movie.release_date}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
