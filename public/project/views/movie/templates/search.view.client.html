@@ -1,0 +1,28 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div class="container">
+    <h2>You searched for: {{model.query}}</h2>
+    <div class="row well" ng-repeat="movie in model.movies" ng-if="movie.poster_path && movie.overview">
+        <div class="media col-sm-8">
+            <div class="media-left media-middle" ng-if="movie.poster_path">
+                <a href="#!/movie/{{movie.id}}">
+                    <img class="media-object movie-search" src="https://image.tmdb.org/t/p/w300{{movie.poster_path}}" alt="{{movie.title}}">
+                </a>
+            </div>
+            <div class="media-body">
+                <h2 class="media-heading"><a href="#!/movie/{{movie.id}}">{{movie.title}}</a></h2>
+                {{movie.overview}}
+            </div>
+        </div>
+        <div class="col-sm-4 movie-well-right">
+            <p><i class="fa fa-calendar" aria-hidden="true"></i> Released On: {{movie.release_date}}</p>
+            <p><i class="fa fa-star" aria-hidden="true"></i> Rating: {{movie.vote_average}}</p>
+            <p ng-if="movie.genre_ids.length"><i class="fa fa-film" aria-hidden="true"></i>
+                <span ng-repeat="genreId in movie.genre_ids">
+                    <a class="mark" href="#!/genre/{{genreId}}">{{model.findGenreById(genreId)}}</a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+</div>
