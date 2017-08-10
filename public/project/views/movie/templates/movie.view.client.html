@@ -1,0 +1,154 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div class="container">
+
+    <div class="alert alert-info" ng-show="model.message">
+        {{model.message}}
+    </div>
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
+    </div>
+    <div class="jumbotron row">
+        <div class="col-sm-4" ng-if="model.movie.poster_path">
+            <img src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">
+        </div>
+        <div class="col-sm-8">
+            <h1>{{model.movie.title}}</h1>
+            <p>{{model.movie.overview}}</p>
+            <p>
+                <a ng-if="model.currentUser.role === 'Viewer'" ng-click="model.addMovieToFavorites(model.movie.id)"
+                   class="btn btn-lg btn-success"
+                   target="_blank">
+                    <i class="fa fa-heart" aria-hidden="true"></i> Add to Favorites
+                </a>
+
+                <a ng-if="model.movie.imdb_id"
+                   href="http://www.imdb.com/title/{{model.movie.imdb_id}}/"
+                   class="btn btn-warning btn-lg"
+                   target="_blank">
+                    <i class="fa fa-imdb" aria-hidden="true"></i> View on IMDB
+                </a>
+
+                <a ng-if="model.movie.homepage"
+                   href="{{model.movie.homepage}}"
+                   class="btn btn-default btn-lg"
+                   target="_blank">
+                    <i class="fa fa-external-link" aria-hidden="true"></i> Visit Website
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Details</div>
+                <table class="table table-bordered table-responsive table-striped">
+                    <tdata>
+                        <tr>
+                            <td><i class="fa fa-clock-o" aria-hidden="true"></i> Length</td>
+                            <td>{{model.movie.runtime}} minutes</td></tr>
+                        <tr ng-if="model.movie.status == 'Released'">
+                            <td><i class="fa fa-calendar" aria-hidden="true"></i> Release Date</td>
+                            <td><span ng-bind="model.movie.release_date | date: 'longDate'"></span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-credit-card" aria-hidden="true"></i> Budget</td>
+                            <td>{{model.movie.budget | currency:"$"}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-money" aria-hidden="true"></i> Revenue</td>
+                            <td>{{model.movie.revenue | currency:"$"}}</td>
+                        </tr>
+                    </tdata>
+                </table>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Genres</div>
+
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="genre in model.movie.genres">
+                        <a href="#!/genre/{{genre.id}}">{{genre.name}}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Production Companies</div>
+
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="co in model.movie.production_companies">
+                        {{co.name}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Artists</div>
+                <div class="panel-body row">
+                    <div class="col-xs-6 col-sm-3" ng-repeat="cast in model.movie.credits.cast | limitTo:4" ng-if="cast.profile_path">
+                        <div class="">
+                            <a href="#!/artist/{{cast.id}}">
+                                <img src="https://image.tmdb.org/t/p/w92{{cast.profile_path}}" alt="{{cast.name}}">
+                            </a>
+                            <div class="caption">
+                                <h5><a href="#!/artist/{{cast.id}}">{{cast.name}}</a></h5>
+                                <p>as {{cast.character}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Character</th>
+                            <th>Played By</th>
+                        </tr>
+                    </thead>
+                    <tdata>
+                        <tr ng-repeat="cast in model.movie.credits.cast | limitTo: (4 - model.movie.credits.cast.length) | limitTo: 4" ng-if="cast.profile_path">
+                            <td>{{cast.character}}</td>
+                            <td><a href="#!/artist/{{cast.id}}"><img ng-if="cast.profile_path" style="width:20px;" src="https://image.tmdb.org/t/p/w92{{cast.profile_path}}"> {{cast.name}}</a></td>
+                        </tr>
+                    </tdata>
+                </table>
+            </div>
+
+            <div class="panel panel-default" ng-if="model.currentUser._id">
+
+                <div class="panel-heading">Reviews</div>
+                <div ng-if="model.currentUser.role === 'Critic'" ng-show="model.message" class="panel-body">
+                    {{model.message}}
+                </div>
+                <div ng-if="model.currentUser.role === 'Critic' && model.toReviewOrNotToReview" class="panel-body form">
+                    <textarea class="form-control" rows="3" ng-model="newReview"></textarea>
+                    <a ng-click="model.createReview(newReview)" class="btn btn-success">Post Review</a>
+                </div>
+
+                <div ng-if="model.reviews.length" class="list-group" ng-repeat="review in model.reviews">
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            <a href="#!/profile/{{review.username}}">{{review.username}}</a>
+                        </h4>
+                        <p class="list-group-item-text">
+                            {{review.review}}
+                        </p>
+                    </div>
+                </div>
+
+                <div ng-if="!model.reviews.length" class="panel-body">
+                    No critic has reviewed this movie yet!
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
