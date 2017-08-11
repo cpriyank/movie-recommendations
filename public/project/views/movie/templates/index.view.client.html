@@ -5,7 +5,7 @@
         <div class="input-group input-group-lg">
             <input type="text" ng-model="model.query" class="form-control" placeholder="Search for Movies">
             <span class="input-group-btn">
-                <a class="btn btn-warning" href="#!/search/{{model.query}}" type="button"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+                <a class="btn btn-info" href="#!/search/{{model.query}}" type="button"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
             </span>
         </div><!-- /input-group -->
     </div>
@@ -14,7 +14,7 @@
         <div class="page-header homepage-search clearfix">
             <h2>Hello <span ng-if="model.currentUser.firstName">{{model.currentUser.firstName}}</span><span ng-if="!model.currentUser.firstName">Guest</span>!
                 <small class="pull-right">
-                    <span ng-if="!model.currentUser.firstName"><a class="btn btn-success btn" href="#!/login">Login</a>  or <a class="btn btn-danger btn" href="#!/register">Register</a></span>
+                    <span ng-if="!model.currentUser.firstName"><a class="btn btn-success btn" href="#!/login">Login</a>  <a class="btn btn-danger btn" href="#!/register">Register</a></span>
                 </small></h2>
         </div>
 
@@ -76,8 +76,8 @@
                         </div>
                     </div>
                     <div class="col-sm-4 movie-well-right">
-                        <p><i class="fa fa-calendar" aria-hidden="true"></i> Release Date: {{movie.release_date}}</p>
-                        <p><i class="fa fa-star" aria-hidden="true"></i> Vote Average: {{movie.vote_average}}</p>
+                        <p><i class="fa fa-calendar-plus" aria-hidden="true"></i> Release Date: {{movie.release_date}}</p>
+                        <p><i class="fa fa-thumbs-up" aria-hidden="true"></i> Rating: {{movie.vote_average}}</p>
                         <p ng-if="movie.genre_ids.length"><i class="fa fa-film" aria-hidden="true"></i>
                             <span ng-repeat="genreId in movie.genre_ids">
                     <a class="mark" href="#!/genre/{{genreId}}">{{model.findGenreById(genreId)}}</a>
@@ -101,8 +101,8 @@
                         </div>
                     </div>
                     <div class="col-sm-4 movie-well-right">
-                        <p><i class="fa fa-calendar" aria-hidden="true"></i> Released Date: {{movie.release_date}}</p>
-                        <p><i class="fa fa-star" aria-hidden="true"></i> Vote Average: {{movie.vote_average}}</p>
+                        <p><i class="fa fa-calendar-plus" aria-hidden="true"></i> Released Date: {{movie.release_date}}</p>
+                        <p><i class="fa fa-thumbs-up" aria-hidden="true"></i> Rating: {{movie.vote_average}}</p>
                         <p ng-if="movie.genre_ids.length"><i class="fa fa-film" aria-hidden="true"></i>
                             <span ng-repeat="genreId in movie.genre_ids">
                     <a class="mark" href="#!/genre/{{genreId}}">{{model.findGenreById(genreId)}}</a>

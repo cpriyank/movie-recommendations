@@ -36,7 +36,7 @@
                 <table class="table table-bordered table-responsive table-striped">
                     <tdata>
                         <tr>
-                            <td><i class="fa fa-calendar" aria-hidden="true"></i> Date of Birth</td>
+                            <td><i class="fa fa-calendar-plus" aria-hidden="true"></i> Date of Birth</td>
                             <td>{{model.actor.birthday | date: fullDate}}</td>
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                         </tr>
                         <tr ng-if="model.actor.deathday != null">
                             <td>
-                                <i class="fa fa-calendar-o" aria-hidden="true"></i> Date of Death
+                                <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Date of Death
                             </td>
                             <td>
                                 {{model.actor.deathday | date: fullDate}}
@@ -53,7 +53,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <i class="fa fa-star" aria-hidden="true"></i> Popularity
+                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Popularity
                             </td>
                             <td>
                                 {{model.actor.popularity}}
@@ -87,7 +87,7 @@
                     <div class="media-body">
                         <h4 class="media-heading"><a href="#!/movie/{{movie.id}}">{{movie.title}}</a></h4>
                         <p><i class="fa fa-user-circle" aria-hidden="true"></i> as {{movie.character}}</p>
-                        <p><i class="fa fa-calendar" aria-hidden="true"></i> Released on {{movie.release_date}}</p>
+                        <p><i class="fa fa-calendar-plus" aria-hidden="true"></i> Released on {{movie.release_date}}</p>
                     </div>
                 </div>
             </div>

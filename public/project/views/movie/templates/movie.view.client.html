@@ -50,7 +50,7 @@
                             <td><i class="fa fa-clock-o" aria-hidden="true"></i> Length</td>
                             <td>{{model.movie.runtime}} minutes</td></tr>
                         <tr ng-if="model.movie.status == 'Released'">
-                            <td><i class="fa fa-calendar" aria-hidden="true"></i> Release Date</td>
+                            <td><i class="fa fa-calendar-plus" aria-hidden="true"></i> Release Date</td>
                             <td><span ng-bind="model.movie.release_date | date: 'longDate'"></span></td>
                         </tr>
                         <tr>

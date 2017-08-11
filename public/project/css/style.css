@@ -7,6 +7,11 @@ h1, h2, h3, h4, h5, h6, p {
 font-family: 'Lato', sans-serif;
 }
 
+.navbar-brand {
+     font-family: 'Monoton', cursive;
+     font-size: xx-large;
+ }
+
 h1, h2, h3 {
 text-transform: uppercase;
 }
@@ -82,4 +87,36 @@ img.movie-search {
     .margin-top {
         margin-top: 1em;
     }
+}
+
+.btn.btn-danger.btn {
+    background-color: #db3236;
+    color: snow;
+}
+
+.btn.btn-success.btn {
+    background-color: #4885ed;
+    color: snow;
+}
+
+.btn.btn-danger.btn:hover {
+    background-color: #ff8a65;
+}
+
+.btn.btn-success.btn:hover {
+    background-color: #82b1ff;
+}
+
+.btn.btn-info:hover {
+    color: snow;
+}
+
+.panel.panel-primary > .panel-heading {
+    background-color: #ff5722;
+    color: snow;
+}
+
+.panel > .panel-heading, .panel.panel-default > .panel-heading {
+    background-color: #ff5722;
+    color: snow;
 }
