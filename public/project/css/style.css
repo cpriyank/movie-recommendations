@@ -120,11 +120,6 @@ img.movie-search {
     background-color: #82b1ff;
 }
 
-.btn.btn-primary:not(.btn-raised), .input-group-btn .btn.btn-primary:not(.btn-raised):hover {
-    background-color: #4885ed;
-    color: snow;
-}
-
 .panel.panel-primary > .panel-heading {
     background-color: #ff5722;
     color: snow;
