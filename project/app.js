@@ -5,7 +5,7 @@ if (process.env.MONGODB_URI) {
     var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
     var password = process.env.MLAB_PASSWORD_WEBDEV;
     connectionString = 'mongodb://' + username + ':' + password;
-    connectionString += '@ds149221.mlab.com:49221/heroku_4l46z2vg';
+    connectionString += '@ds153521.mlab.com:53521/heroku_vlhjwznw';
 }
 else
 {
