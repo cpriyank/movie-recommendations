@@ -1,0 +1,39 @@
+<div ng-include="'views/common/templates/navigation.view.client.html'"></div>
+
+<div id="primary" class="container profile">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <div ng-show="model.message" class="alert alert-success">
+        {{model.message}}
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-6">
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Your Feed</div>
+
+                <div class="panel-body" ng-if="!model.feedReviews.length">
+                    <span class="lead">Hi {{model.user.firstName}},</span><br>
+                    Your feed list is empty! You need to follow a critic to see your feed:
+                    <ol>
+                        <li>Search for a movie from search bar and open movie details.</li>
+                        <li>If it is reviewed by a critic, follow a critic</li>
+                        <li>By following a critic, you can see all his reviews in your feed</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row well" ng-repeat="feedReview in model.feedReviews" ng-if="model.feedReviews.length">
+            <div class="media col-sm-8">
+                <div class="media-body">
+                    {{feedReview.firstName}} {{feedReview.lastName}} reviewed {{feedReview.reviewed}}: {{feedReview.review}}
+                </div>
+            </div>
+        </div>
+
+    </div>

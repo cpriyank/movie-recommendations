@@ -85,6 +85,14 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/feed', {
+                templateUrl: 'views/user/templates/feed.view.client.html',
+                controller: 'feedController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when('/search/:query', {
                 templateUrl: 'views/movie/templates/search.view.client.html',
                 controller: 'searchController',
